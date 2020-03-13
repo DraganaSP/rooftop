@@ -23,11 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->Password   = PASSWORD;
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
+            $mail->Mailer = "smtp";
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+                )
+                );
 
             $mail->setFrom(FROM_ADDRESS);
             $mail->addAddress(TO_ADDRESS);
 
-            if(!empty($_FILES['contact_file'])){
+            if(strlen($_FILES['contact_file']['tmp_name']) > 0){
                 $mail->addAttachment($_FILES['contact_file']['tmp_name'], $_FILES['contact_file']['name']);
             }
 
@@ -46,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location:../index.html');
             die();
         } catch (Exception $e) {
+            var_dump($mail->ErrorInfo); die();
             header('Location:404.php');
             die();
         }

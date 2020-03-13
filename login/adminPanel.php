@@ -184,7 +184,7 @@
         })
 
         $(document).on('click', '.delete', (e) => {
-            let id = e.target.getAttribute('data-id');
+            let id = e.target.getAttribute('data-id'); 
             $('tbody').find(`tr#${id}`).remove();
         })
     });

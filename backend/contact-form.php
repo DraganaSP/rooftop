@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 require './config.php';
 require '../phpmailer/phpmailer/src/Exception.php';
 require '../phpmailer/phpmailer/src/PHPMailer.php';
-require '../phpmailer/phpmailer/src/SMTP.php';
+require '../phpmailer/phpmailer/src/SMTP.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST['contact_name']) && !empty($_POST['contact_phone']) && !empty($_POST['contact_email']) && !empty($_POST['contact_message'])) {
